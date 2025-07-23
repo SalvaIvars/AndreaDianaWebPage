@@ -24,7 +24,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            El Yoga Como Una Vía De Liberación
+            El Retiro Como Una Vía De Liberación
           </motion.h2>
           <motion.p
             className="text-xl md:text-2xl max-w-2xl drop-shadow-sm"
