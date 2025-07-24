@@ -10,9 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
-      <body className="flex flex-col min-h-screen">
+      <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">{children}</main>
+<main className="flex-grow pt-20">
+          {children}
+        </main>
         <footer className="bg-green-800 text-white text-center p-4">
           &copy; {new Date().getFullYear()} MiRetiro. Todos los derechos reservados.
         </footer>
