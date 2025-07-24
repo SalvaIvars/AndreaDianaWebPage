@@ -24,6 +24,12 @@ export default function Navbar() {
           <li><Link href="/contacto" className={linkClass('/contacto')}>Contacto</Link></li>
           <li><Link href="/sobre-mi" className={linkClass('/sobre-mi')}>Sobre nosotras</Link></li>
           <li><Link href="/tienda" className={linkClass('/tienda')}>Tienda</Link></li>
+          <li>
+  <Link href="/faq" className={linkClass('/faq')}>
+    Preguntas
+  </Link>
+</li>
+
 
         </ul>
       </div>
