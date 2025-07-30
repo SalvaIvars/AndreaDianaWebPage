@@ -65,10 +65,8 @@ export default function RecursosPage() {
     const coincideBusqueda =
       r.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
       r.descripcion.toLowerCase().includes(busqueda.toLowerCase());
-
     const coincideEtiqueta =
       !etiquetaActiva || r.etiquetas.includes(etiquetaActiva);
-
     return coincideBusqueda && coincideEtiqueta;
   });
 
@@ -84,13 +82,45 @@ export default function RecursosPage() {
           Recursos Creativos
         </motion.h1>
 
-        {/* Filtros */}
-        <div className="max-w-[1200px] mx-auto grid md:grid-cols-4 gap-6">
-          {/* Índice lateral */}
-          <aside className="md:col-span-1 space-y-3 md:sticky md:top-24">
+        {/* Buscador */}
+        <div className="max-w-3xl mx-auto mb-6">
+          <div className="flex items-center w-full border border-gray-300 rounded-xl px-4 py-2 bg-white shadow-sm">
+            <Search className="text-green-500 mr-2" />
+            <input
+              type="text"
+              placeholder="Buscar recurso..."
+              className="w-full outline-none text-gray-700"
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* Etiquetas móviles: scroll horizontal */}
+        <div className="md:hidden flex overflow-x-auto gap-2 py-4 px-1 mb-6 -mx-1">
+          {todasEtiquetas.map((et) => (
+            <button
+              key={et}
+              onClick={() =>
+                setEtiquetaActiva(etiquetaActiva === et ? null : et)
+              }
+              className={`whitespace-nowrap px-3 py-1 rounded-full text-sm border transition ${
+                etiquetaActiva === et
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              #{et}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid principal */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
+          {/* Sidebar solo en desktop */}
+          <aside className="hidden md:block md:col-span-1 space-y-3 sticky top-24">
             <h3 className="text-lg font-semibold text-green-800 flex items-center gap-2">
-              <Tag className="w-5 h-5" />
-              Etiquetas
+              <Tag className="w-5 h-5" /> Etiquetas
             </h3>
             <button
               onClick={() => setEtiquetaActiva(null)}
@@ -117,67 +147,50 @@ export default function RecursosPage() {
             ))}
           </aside>
 
-          {/* Contenido principal */}
+          {/* Recursos */}
           <div className="md:col-span-3 space-y-8">
-            {/* Buscador */}
-            <div className="flex items-center w-full border border-gray-300 rounded-xl px-4 py-2 bg-white shadow-sm">
-              <Search className="text-green-500 mr-2" />
-              <input
-                type="text"
-                placeholder="Buscar recurso..."
-                className="w-full outline-none text-gray-700"
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-              />
-            </div>
-
-            {/* Recursos */}
             <div className="grid gap-10 md:grid-cols-2">
-              {recursosFiltrados.map(
-                ({ titulo, descripcion, tipo, enlace, etiquetas }, i) => (
-                  <motion.div
-                    key={i}
-                    className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                    viewport={{ once: true }}
+              {recursosFiltrados.map((r, i) => (
+                <motion.div
+                  key={i}
+                  className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    {getIcon(r.tipo)}
+                    <h2 className="text-lg font-semibold text-green-800">
+                      {r.titulo}
+                    </h2>
+                  </div>
+                  <p className="text-gray-700 mb-3 text-sm">{r.descripcion}</p>
+                  <a
+                    href={r.enlace}
+                    target="_blank"
+                    className="text-green-600 underline font-medium hover:text-green-800"
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      {getIcon(tipo)}
-                      <h2 className="text-lg font-semibold text-green-800">
-                        {titulo}
-                      </h2>
-                    </div>
-                    <p className="text-gray-700 mb-3 text-sm">{descripcion}</p>
-                    <a
-                      href={enlace}
-                      target="_blank"
-                      className="text-green-600 underline font-medium hover:text-green-800"
-                    >
-                      {tipo === "audio"
-                        ? "🎧 Escuchar"
-                        : tipo === "pdf"
-                        ? "📄 Leer"
-                        : "🔗 Ver recurso"}
-                    </a>
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {etiquetas.map((et) => (
-                        <span
-                          key={et}
-                          className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full"
-                        >
-                          #{et}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )
-              )}
+                    {r.tipo === "audio"
+                      ? "🎧 Escuchar"
+                      : r.tipo === "pdf"
+                      ? "📄 Leer"
+                      : "🔗 Ver recurso"}
+                  </a>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {r.etiquetas.map((et) => (
+                      <span
+                        key={et}
+                        className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full"
+                      >
+                        #{et}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Si no hay resultados */}
             {recursosFiltrados.length === 0 && (
               <p className="text-center text-gray-500 mt-10">
                 No se encontraron recursos con esos filtros.
