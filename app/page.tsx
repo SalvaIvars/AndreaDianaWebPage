@@ -139,10 +139,12 @@ export default function Home() {
           </motion.p>
         </div>
       </section>
+
       {/* ¿QUÉ INCLUYE? */}
       <main className="p-8 text-center bg-white">
         <SectionWrapper bg="bg-white">
-          <section className="bg-white py-16 px-6">
+          <section className="py-16 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+            {" "}
             <motion.h2
               className="text-4xl font-bold text-center text-green-700 mb-12"
               initial={{ opacity: 0, y: -20 }}
@@ -152,7 +154,6 @@ export default function Home() {
             >
               ¿Qué incluye el retiro?
             </motion.h2>
-
             <div className="max-w-6xl mx-auto grid gap-10 sm:grid-cols-2 md:grid-cols-3">
               {[
                 {
@@ -214,12 +215,7 @@ export default function Home() {
               Este recorrido invita a recontarse con la inteligencia institutiva
               del cuerpo, despertando la capacidad de adpatarse, fluir,
               divertirse y enctonrar equilibrio frente a los desafíos que
-              presenta el terreno.{" "}
-              <p
-                className={`${dancing.className} text-2xl text-purple-700 mt-6 italic`}
-              >
-                “Una metáfora viva del camino interior”
-              </p>
+              presenta el terreno. “Una metáfora viva del camino interior”
             </motion.p>
           </SectionWrapper>
 

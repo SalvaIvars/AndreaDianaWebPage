@@ -1,0 +1,9 @@
+[
+  {
+    "titulo": "Meditación guiada",
+    "descripcion": "Audio suave para reconectar.",
+    "tipo": "audio",
+    "etiquetas": ["cuerpo", "emociones"],
+    "enlace": "/audios/meditacion.mp3"
+  }
+]

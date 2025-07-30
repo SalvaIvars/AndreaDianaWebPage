@@ -62,8 +62,11 @@ export default function Navbar() {
           <Link href="/" className={linkClass("/")}>
             Inicio
           </Link>
-          <Link href="/testimonios" className={linkClass("/testimonios")}>
+          <Link href="/recursos" className={linkClass("/recursos")}>
             Recursos Creativos
+          </Link>
+          <Link href="/blog" className={linkClass("/blog")}>
+            Blog
           </Link>
           <Link href="/sobre-mi" className={linkClass("/sobre-mi")}>
             Sobre nosotras
@@ -94,8 +97,13 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link href="/testimonios" className={linkClass("/testimonios")}>
+              <Link href="/recursos" className={linkClass("/recursos")}>
                 Recursos Creativos
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className={linkClass("/blog")}>
+                Blog
               </Link>
             </li>
             <li>
