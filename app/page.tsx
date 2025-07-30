@@ -1,4 +1,10 @@
 "use client";
+import { Dancing_Script } from "next/font/google";
+
+const dancing = Dancing_Script({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 import Image from "next/image";
 import background from "../public/images/background.jpg";
@@ -121,7 +127,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            El Retiro Como Una Vía De Liberación
+            Geografía del cuerpo: El movimiento como adaptación al medio
           </motion.h2>
           <motion.p
             className="text-xl md:text-2xl max-w-2xl drop-shadow-sm"
@@ -129,8 +135,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Un camino alegre hacia la reconexión con lo elevado y con lo
-            profundo.
+            Este proyecto conecta cuerpo, naturaleza y consciencia
           </motion.p>
         </div>
       </section>
@@ -152,21 +157,24 @@ export default function Home() {
               {[
                 {
                   icon: Flower,
-                  texto: "Sesiones de yoga y meditación guiadas",
+                  texto: "Sesiones de coaching",
                 },
-                { icon: CupSoda, texto: "Alimentación consciente y detox" },
+                {
+                  icon: CupSoda,
+                  texto: "Clase de estiramientos de cadenas musculares",
+                },
                 {
                   icon: Heart,
-                  texto: "Terapias de medicina china y energéticas",
+                  texto: "Terapia de medicina china y Shiatsu",
                 },
                 {
                   icon: CalendarDays,
-                  texto: "3 días / 2 noches de descanso profundo",
+                  texto: "Talleres de movimiento funcional",
                 },
-                { icon: Moon, texto: "Rituales bajo la luna y fuego" },
+                { icon: Moon, texto: "Cocina creativa, sensorial y natural" },
                 {
                   icon: Users,
-                  texto: "Conexión grupal y acompañamiento emocional",
+                  texto: "Conexión grupal y acompañamiento emocial",
                 },
               ].map(({ icon: Icon, texto }, index) => (
                 <motion.div
@@ -184,88 +192,56 @@ export default function Home() {
             </div>
           </section>
         </SectionWrapper>
+        <div className="relative">
+          {/* BIENVENIDA */}
+          <SectionWrapper bg="bg-gray-50">
+            <motion.h2
+              className="text-4xl font-bold text-green-700 mb-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Bienvenid@ a Movent
+            </motion.h2>
+            <motion.p
+              className="text-gray-700 max-w-2xl mx-auto text-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              Este recorrido invita a recontarse con la inteligencia institutiva
+              del cuerpo, despertando la capacidad de adpatarse, fluir,
+              divertirse y enctonrar equilibrio frente a los desafíos que
+              presenta el terreno.{" "}
+              <p
+                className={`${dancing.className} text-2xl text-purple-700 mt-6 italic`}
+              >
+                “Una metáfora viva del camino interior”
+              </p>
+            </motion.p>
+          </SectionWrapper>
 
-        {/* BIENVENIDA */}
-        <SectionWrapper bg="bg-gray-50">
-          <motion.h2
-            className="text-4xl font-bold text-green-700 mb-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Bienvenida al retiro
-          </motion.h2>
-          <motion.p
-            className="text-gray-700 max-w-2xl mx-auto text-lg"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Explora tu bienestar con terapias de coaching y medicina china en un
-            espacio dedicado a tu transformación interior.
-          </motion.p>
-        </SectionWrapper>
+          {/* ONDA CURVA SVG */}
+          <div className="w-full overflow-hidden leading-[0] rotate-180 -mt-1">
+            <svg
+              viewBox="0 0 500 100"
+              preserveAspectRatio="none"
+              className="h-[60px] w-full"
+            >
+              <path
+                d="M0,0 C150,100 350,0 500,100 L500,00 L0,0 Z"
+                className="fill-blue-50"
+              />
+            </svg>
+          </div>
+        </div>
       </main>
 
-      {/* CARRUSEL DE TESTIMONIOS */}
-      <SectionWrapper bg="bg-green-50" roundedTop>
-        <section className="py-20 px-6 bg-green-50">
-          <h2 className="text-4xl font-bold text-center text-green-700 mb-12">
-            Testimonios
-          </h2>
-
-          <div className="relative max-w-3xl mx-auto text-center">
-            {/* Botones */}
-            <button
-              onClick={() =>
-                setTestimonioIndex(
-                  (i) => (i - 1 + testimonios.length) % testimonios.length
-                )
-              }
-              aria-label="Anterior"
-              className="absolute left-0 top-1/2 -translate-y-1/2 text-green-700"
-            >
-              <ChevronLeft size={32} />
-            </button>
-            <button
-              onClick={() =>
-                setTestimonioIndex((i) => (i + 1) % testimonios.length)
-              }
-              aria-label="Siguiente"
-              className="absolute right-0 top-1/2 -translate-y-1/2 text-green-700"
-            >
-              <ChevronRight size={32} />
-            </button>
-
-            {/* Testimonio activo */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={testimonioIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6 }}
-                className="px-6"
-              >
-                <Quote className="mx-auto mb-4 text-green-400" size={40} />
-                <p className="text-xl italic text-gray-700 mb-4">
-                  “{testimonios[testimonioIndex].texto}”
-                </p>
-                <p className="text-green-800 font-semibold">
-                  {testimonios[testimonioIndex].nombre}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </section>
-      </SectionWrapper>
-
-      {/* TARJETAS */}
-      <SectionWrapper bg="bg-white-50" borderTop>
-        <section className="space-y-16 p-8 bg-gray-50">
-          {/* Tarjeta 1 */}
+      {/* TARJETA DE DIANA (azul) */}
+      <SectionWrapper bg="bg-blue-50" borderTop>
+        <section className="p-8">
           <motion.div
             className="flex flex-col md:flex-row items-center gap-6 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -281,17 +257,21 @@ export default function Home() {
               className="rounded-lg shadow-lg object-cover"
             />
             <div>
-              <h3 className="text-2xl font-semibold text-green-700 mb-2">
+              <h3 className="text-2xl font-semibold text-blue-700 mb-2">
                 Terapia Energética
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-blue-900 text-lg">
                 Armoniza cuerpo y mente con sesiones centradas en desbloquear
                 emociones y restaurar tu energía vital.
               </p>
             </div>
           </motion.div>
+        </section>
+      </SectionWrapper>
 
-          {/* Tarjeta 2 */}
+      {/* TARJETA DE ANDREA (morado) */}
+      <SectionWrapper bg="bg-purple-50">
+        <section className="p-8">
           <motion.div
             className="flex flex-col md:flex-row-reverse items-center gap-6 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -307,10 +287,10 @@ export default function Home() {
               className="rounded-lg shadow-lg object-cover"
             />
             <div>
-              <h3 className="text-2xl font-semibold text-green-700 mb-2">
+              <h3 className="text-2xl font-semibold text-purple-700 mb-2">
                 Coaching Personal
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-purple-900 text-lg">
                 Acompañamiento para conectar con tu propósito, liberar bloqueos
                 mentales y avanzar hacia una vida más plena.
               </p>
@@ -418,6 +398,59 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* CARRUSEL DE TESTIMONIOS */}
+      <SectionWrapper bg="bg-green-50" roundedTop>
+        <section className="py-20 px-6 bg-green-50">
+          <h2 className="text-4xl font-bold text-center text-green-700 mb-12">
+            Testimonios
+          </h2>
+
+          <div className="relative max-w-3xl mx-auto text-center">
+            {/* Botones */}
+            <button
+              onClick={() =>
+                setTestimonioIndex(
+                  (i) => (i - 1 + testimonios.length) % testimonios.length
+                )
+              }
+              aria-label="Anterior"
+              className="absolute left-0 top-1/2 -translate-y-1/2 text-green-700"
+            >
+              <ChevronLeft size={32} />
+            </button>
+            <button
+              onClick={() =>
+                setTestimonioIndex((i) => (i + 1) % testimonios.length)
+              }
+              aria-label="Siguiente"
+              className="absolute right-0 top-1/2 -translate-y-1/2 text-green-700"
+            >
+              <ChevronRight size={32} />
+            </button>
+
+            {/* Testimonio activo */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={testimonioIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.6 }}
+                className="px-6"
+              >
+                <Quote className="mx-auto mb-4 text-green-400" size={40} />
+                <p className="text-xl italic text-gray-700 mb-4">
+                  “{testimonios[testimonioIndex].texto}”
+                </p>
+                <p className="text-green-800 font-semibold">
+                  {testimonios[testimonioIndex].nombre}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+      </SectionWrapper>
 
       {/* FAQ */}
       <SectionWrapper bg="bg-white" borderTop>

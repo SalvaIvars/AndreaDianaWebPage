@@ -44,7 +44,7 @@ export default function Navbar() {
               scrolled ? "text-2xl" : "text-3xl"
             }`}
           >
-            MiRetiro
+            Movent
           </span>
         </Link>
 
@@ -63,7 +63,7 @@ export default function Navbar() {
             Inicio
           </Link>
           <Link href="/testimonios" className={linkClass("/testimonios")}>
-            Testimonios
+            Recursos Creativos
           </Link>
           <Link href="/sobre-mi" className={linkClass("/sobre-mi")}>
             Sobre nosotras
@@ -95,7 +95,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/testimonios" className={linkClass("/testimonios")}>
-                Testimonios
+                Recursos Creativos
               </Link>
             </li>
             <li>
